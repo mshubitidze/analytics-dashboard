@@ -1,6 +1,7 @@
 import { AnalyticsDashboard } from "@/components/analytics-dashboard";
 import { getDate } from "@/utils";
 import { analytics } from "@/utils/analytics";
+import Link from "next/link";
 
 export default async function AnalyticsPage() {
   const TRACKING_DAYS = 7;
@@ -59,6 +60,9 @@ export default async function AnalyticsPage() {
 
   return (
     <main className="min-h-screen w-full py-12 flex flex-col items-center justify-center">
+      <Link className="text-white" href="/">
+        home
+      </Link>
       <div className="relative w-full max-w-6xl mx-auto text-white">
         <AnalyticsDashboard
           avgVisitorsPerDay={(totalPageviews / TRACKING_DAYS).toFixed(1)}
