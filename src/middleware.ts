@@ -6,10 +6,14 @@ const pages = ["/", "/first-page", "/second-page"];
 export default async function middleware(req: NextRequest) {
   if (pages.includes(req.nextUrl.pathname)) {
     try {
-      analytics.track("pageview", {
-        namespace: req.nextUrl.pathname,
-        country: req.geo?.country,
-      });
+      analytics.track(
+        "pageview",
+        {
+          pathname: req.nextUrl.pathname,
+          country: req.geo?.country,
+        },
+        { persist: true },
+      );
     } catch (err) {
       console.error(err);
     }
