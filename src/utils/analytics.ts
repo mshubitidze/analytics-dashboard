@@ -65,6 +65,13 @@ export class Analytics {
       })),
     };
   }
+
+  async retrievePageViewsByPath(namespace: string, date: string, path: string) {
+    const key = `analytics::${namespace}::${date}`;
+
+    const res = await redis.hget<number>(key, `{"namespace":"${path}"}`);
+    return res ?? 0;
+  }
 }
 
 export const analytics = new Analytics();

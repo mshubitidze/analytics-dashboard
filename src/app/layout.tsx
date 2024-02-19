@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Roboto_Mono } from "next/font/google";
 import "./globals.css";
+import Link from "next/link";
 
 const roboto = Roboto_Mono({ subsets: ["latin"] });
 
@@ -16,7 +17,23 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${roboto.className} dark bg-[#020817]`}>
+      <body className={`${roboto.className} dark min-h-screen`}>
+        <header className="h-16 border-b">
+          <div className="flex items-center h-full gap-6 container mx-auto">
+            <Link className="border rounded-md px-4 py-2" href="/">
+              home
+            </Link>
+            <Link className="border rounded-md px-4 py-2" href="/first-page">
+              first page
+            </Link>
+            <Link className="border rounded-md px-4 py-2" href="/second-page">
+              second page
+            </Link>
+            <Link className="border rounded-md px-4 py-2" href="/analytics">
+              analytics
+            </Link>
+          </div>
+        </header>
         {children}
       </body>
     </html>

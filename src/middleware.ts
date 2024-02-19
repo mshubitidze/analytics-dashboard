@@ -1,11 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import { analytics } from "@/utils/analytics";
 
+const pages = ["/", "/first-page", "/second-page"];
+
 export default async function middleware(req: NextRequest) {
-  if (req.nextUrl.pathname === "/") {
+  if (pages.includes(req.nextUrl.pathname)) {
     try {
       analytics.track("pageview", {
-        namespace: "/",
+        namespace: req.nextUrl.pathname,
         country: req.geo?.country,
       });
     } catch (err) {
@@ -16,5 +18,5 @@ export default async function middleware(req: NextRequest) {
 }
 
 export const matcher = {
-  matcher: ["/"],
+  matcher: pages,
 };
